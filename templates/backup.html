@@ -1,0 +1,29 @@
+<!-- mi_template.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESPALDO</title>
+    <script>
+        // Función que muestra el popup con el mensaje de éxito o error
+        function mostrarPopup() {
+            // Obtener el mensaje pasado desde la vista Django
+            const mensaje = "{{ mensaje }}";
+            //const operacionExitosa = {{ operacion_exitosa|yesno:"true,false" }};
+            
+            // Mostrar el popup con el mensaje
+            const respuesta = confirm(mensaje);
+            
+            window.location.href = "{% url http://localhost:8000/admin/' %}";
+        }
+        
+        // Llamar a la función para mostrar el popup al cargar la página
+        window.onload = mostrarPopup;
+    </script>
+</head>
+<body>
+    <h1>RESPALDO</h1>
+    <!-- Aquí puedes incluir el contenido que desees mostrar -->
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<div id="messageModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body" id="modalMessageBody">
+	        <!-- Aquí irá el mensaje -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('#ventaForm'); // Asegúrate de que el ID sea correcto
+      const modalBody = document.getElementById('modalMessageBody');
+      const modal = new bootstrap.Modal(document.getElementById('messageModal'));
+
+      form.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          const formData = new FormData(form);
+
+          fetch(form.action, {
+              method: 'POST',
+              body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.status === 'success') {
+                  modalBody.textContent = data.message;
+              } else {
+                  modalBody.textContent = data.message;
+              }
+              modal.show();
+          })
+          .catch(error => {
+              modalBody.textContent = 'Error inesperado: ' + error;
+              modal.show();
+          });
+      });
+  });
+</script>
+
+	<form id="ventaForm" action="{% url 'realizar_venta' %}" method="post">
+	  {% csrf_token %}
+	  <label for="id_venta">ID Venta:</label>
+	  <input type="text" id="id_venta" name="id_venta" required>
+
+	  <label for="producto">Producto:</label>
+	  <input type="text" id="producto" name="producto" required>
+
+	  <label for="cantidad_v">Cantidad:</label>
+	  <input type="number" id="cantidad_v" name="cantidad_v" required>
+
+	  <button type="submit" class="btn btn-primary">Realizar Venta</button>
+	</form>
+</body>
+</html>
