@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% load static %}
+
+{% block branding %}
+<table>
+    <tr>
+        <td>
+            <img src='{% static "img/INFINITO_CIBER.jpg" %}' alt="INFINITO_CIBER" width="100">
+        </td>
+        <td style="text-align: center; vertical-align:middle; padding: auto; font-size: 30px;">
+            <h1 text-align="center"><b>CIBER INFINITO - Punto de Venta</b></h1>
+        </td>
+        <td style="text-align: center; vertical-align:middle; padding: 20px;">
+            <a href="http://localhost:8000/backup/" 
+               class="backup-button"
+               style="
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    transition: background-color 0.3s ease;
+                    border: none;
+                    cursor: pointer;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                Realizar Backup
+            </a>
+        </td>
+        <td style="text-align: center; vertical-align:middle; padding: 10px;">
+            <a href="http://localhost:8000/restore/" 
+               class="backup-button"
+               style="
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    transition: background-color 0.3s ease;
+                    border: none;
+                    cursor: pointer;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                Restaurar
+            </a>
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
